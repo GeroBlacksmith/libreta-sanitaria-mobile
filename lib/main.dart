@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libreta_sanitaria_mobile/login.dart';
+import 'package:libreta_sanitaria_mobile/test_post_page.dart';
 
 import 'home.dart';
 
@@ -21,9 +22,11 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.red,
+        // primarySwatch: Colors.red,
+        primarySwatch: Colors.deepPurple,
       ),
-      home: LoginPage(title: 'Flutter Demo Home Page'),
+      //home: LoginPage(title: 'Flutter Demo Home Page'),
+      home: TestPostPage(),
     );
   }
 }
