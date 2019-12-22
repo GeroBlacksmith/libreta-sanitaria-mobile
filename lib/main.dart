@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:libreta_sanitaria_mobile/login.dart';
+import 'package:libreta_sanitaria_mobile/pages/login.dart';
 import 'package:libreta_sanitaria_mobile/test_post_page.dart';
 
-import 'home.dart';
+import 'pages/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.red,
         primarySwatch: Colors.deepPurple,
       ),
-      //home: LoginPage(title: 'Flutter Demo Home Page'),
-      home: TestPostPage(),
+      home: LoginPage(title: 'Flutter Demo Home Page'),
+      //home: TestPostPage(),
     );
   }
 }

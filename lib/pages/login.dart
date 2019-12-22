@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:libreta_sanitaria_mobile/test_post_page.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -14,25 +15,36 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>{
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  TextEditingController _userController;
+  TextEditingController _passwordController;
+
+  void dispose() {
+    _userController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final userField = TextField(
+      controller:_userController,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "User",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        hintText: "User",
+        border:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    
     );
     final passwordField = TextField(
+      controller: _passwordController,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         hintText: "Password",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final loginButton = Material(
       elevation: 5.0,
@@ -41,7 +53,30 @@ class _LoginPageState extends State<LoginPage>{
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: (){},
+        onPressed: () async{
+          await showDialog<void>(
+            context: context,
+            builder:(BuildContext context){
+              return AlertDialog(
+              title: const Text('Bienvenido!'),
+              content: Text(_userController.text),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: const Text('OK'),
+                )
+              ],
+            );
+            }
+          );
+          return Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TestPostPage()
+            ));
+        },
         child: Text("Login",
           textAlign: TextAlign.center,
           style: style.copyWith(
@@ -67,7 +102,7 @@ class _LoginPageState extends State<LoginPage>{
                 SizedBox(
                   height: 155.0,
                   child: Image.asset(
-                    "asset/logo.png",
+                    "assets/logo.png",
                     fit: BoxFit.contain,
                   ),
                 ),
